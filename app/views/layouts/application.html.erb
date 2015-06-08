@@ -17,7 +17,8 @@
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>|
 <% end %>
 <%=link_to 'Make a New Appointment', new_appointment_path%> |
-<%=link_to 'Home', root_path%>
+<%=link_to 'Home', root_path%> |
+<%= link_to "Pay with SnapScan", payments_index_path, :class => 'navbar-link'  %>
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
@@ -26,6 +27,7 @@
 <% end %>
 
 <p class="navbar-text pull-right">
+
 <%= yield %>
 </body>
 </html>

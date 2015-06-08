@@ -1,23 +1,26 @@
 
+<% if @appointments.present?%>
+	<div id="calendar">
+	<h2 id="month">
+	    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>
+	    <%= h @date.strftime("%B %Y") %>
+	    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-01") %>
+	</h2>
+	<%= calendar_for @appointments, :year => @appointments.first.slot.year, :month => @appointments.first.slot.month do |calendar| %>
+	<%= calendar.head('Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat') %>
+	<%= calendar.day(:day_method => :slot) do |slot, name| %>
+	<%= slot.day %>
 
-<div id="calendar">
-<h2 id="month">
-    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>
-    <%= h @date.strftime("%B %Y") %>
-    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-01") %>
-</h2>
-<%= calendar_for @appointments, :year => @appointments.first.slot.year, :month => @appointments.first.slot.month do |calendar| %>
-<%= calendar.head('Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat') %>
-<%= calendar.day(:day_method => :slot) do |slot, name| %>
-<%= slot.day %>
-
-	<ul>
-	      <%@appointments.each do |appt| %>
-	        <% if slot.day == appt.slot.day&&appt.slot.month==@date.month%>
-	        	<li><%= link_to h(appt.name), appt %> @ <%= appt.time.strftime("%I:%M %p") %></li>
-	        <% end %>
-	      <% end %>
-	</ul>
+		<ul>
+		      <%@appointments.each do |appt| %>
+		        <% if slot.day == appt.slot.day&&appt.slot.month==@date.month%>
+		        	<li><%= link_to h(appt.name), appt %> @ <%= appt.time.strftime("%I:%M %p") %></li>
+		        <% end %>
+		      <% end %>
+		</ul>
+	<% end %>
+	<% end %>
+	</div>
+<% else %>
+	<h1>You have no appointments</h1>
 <% end %>
-<% end %>
-</div>
