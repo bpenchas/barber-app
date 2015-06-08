@@ -2,4 +2,6 @@
 <%@appointments.each do |appt|%>
 	<h1><%=link_to appt.client_number, appointment_path(appt)%></h1><br>
 <%end%>
+
+<%=link_to 'Make a New Appointment', new_appointment_path%><br>
 </div>

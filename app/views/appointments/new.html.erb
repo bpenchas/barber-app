@@ -1,6 +1,22 @@
 <%= simple_form_for @appointment do |f| %>
   <%= f.input :slot, input_html: { class: 'form-control' } %>
-  <%= f.input :time, input_html: { class: 'form-control' } %>
+  <%= f.input :time, input_html: { class: 'form-control' }, :minute_step => 30 %>
   <%= f.input :client_number, input_html: { class: 'form-control' } %>
   <%= f.button :submit %>
 <% end %>
+
+<h1>List of taken time slots</h1>
+
+<div align="center">
+<%@appointments.each do |appt|%>
+	<% if appt.slot.present?%>
+		<% if appt.slot > DateTime.now.to_date&&appt.slot<(DateTime.now.to_date + 10.days) %>
+			<%=appt.slot%> <%=appt.time.strftime("%I: %M")%><br>
+		<%end%>
+	<%else%>
+		<h1>No booked appointments</h1>
+	<%end%>
+<%end%>
+</div>
+
+<%=link_to 'Back', root_path%>

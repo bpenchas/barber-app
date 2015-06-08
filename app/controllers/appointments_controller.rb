@@ -2,6 +2,7 @@ class AppointmentsController < ApplicationController
 	before_action :find_appointment, only: [:show, :edit, :update, :destroy]
 
 	def new
+		@appointments = Appointment.all
 		@appointment = Appointment.new
 		@appointment.save
 
