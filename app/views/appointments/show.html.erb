@@ -1,0 +1,13 @@
+
+
+<h1><%=@appointment.slot%></h1>
+<h1>The time is <%=@appointment.time%></h1>
+
+<p><%=@appointment.client_number%> customers</p>
+
+
+
+<%=link_to 'Make a New Appointment', new_appointment_path%><br>
+<%=link_to 'Back', root_path%>|
+<%=link_to 'Edit', edit_appointment_path%>|
+<%=link_to 'Delete', appointment_path, method: :delete, data: {confirm: 'Are you sure bru?'}%>

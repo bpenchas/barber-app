@@ -1,0 +1,5 @@
+<div align="center">
+<%@appointments.each do |appt|%>
+	<h1><%=link_to appt.client_number, appointment_path(appt)%></h1><br>
+<%end%>
+</div>
