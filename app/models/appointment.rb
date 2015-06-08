@@ -9,6 +9,6 @@ class Appointment < ActiveRecord::Base
 
 	validates :time, presence: true
 	validates :client_number, presence: true
-
+	validates :name, presence: true
 	belongs_to :users
 end

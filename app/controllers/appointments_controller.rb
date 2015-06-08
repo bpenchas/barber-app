@@ -55,6 +55,7 @@ class AppointmentsController < ApplicationController
 	end
 
 	def index
+		@date = params[:month] ? Date.parse(params[:month]) : Date.today
 		if current_user.admin?
 	    @appointments = Appointment.all
 	  else
@@ -68,7 +69,7 @@ class AppointmentsController < ApplicationController
 	# Be sure to update your create() and update() controller methods.
 
 	def appointment_params
-	  params.require(:appointment).permit(:slot, :client_number, :time)
+	  params.require(:appointment).permit(:slot, :client_number, :time, :name)
 	end
 
 	def find_appointment

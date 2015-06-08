@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'simple_form'
 
 gem 'devise'
+
+gem "watu_table_builder", :require => "table_builder"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
