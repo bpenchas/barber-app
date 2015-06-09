@@ -7,8 +7,14 @@ class Appointment < ActiveRecord::Base
       !slot.blank? and slot < Date.today
   end
 
+
 	validates :time, presence: true
 	validates :client_number, presence: true
 	validates :name, presence: true
+	validates :address, presence: true
 	belongs_to :users
+
+	geocoded_by :address
+	after_validation :geocode
+
 end

@@ -28,6 +28,12 @@ gem 'simple_form'
 gem 'devise'
 
 gem "watu_table_builder", :require => "table_builder"
+
+gem 'geocoder'
+
+gem 'underscore-rails'
+
+gem 'gmaps4rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

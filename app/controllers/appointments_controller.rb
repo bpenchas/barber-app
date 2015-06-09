@@ -4,9 +4,22 @@ class AppointmentsController < ApplicationController
 
 	def new
 		@appointments = Appointment.all
+		@taken_slots = []
+
+		@appointments.each do |appt|
+				@taken_slots << [appt.slot, appt.time.strftime("%I:%M %p")]
+		end
+
+		# @appointments.each do |appt|
+		# 	if is_taken?(appt)
+		# 		@taken_times << appt.time.strftime("%I:%M %p")
+		# 	end
+		# end
+		
 		@appointment = Appointment.new
 		@appointment.user_id = current_user.id
 		@appointment.save
+		
 
 	end
 	def update
@@ -17,7 +30,7 @@ class AppointmentsController < ApplicationController
 	      render 'edit'
 	    end
 	  else
-	  	redirect_to :root, alert: "You cannot edit that"
+	  	redirect_to root_path, alert: "You cannot edit that"
 	  end
 	end
 	
@@ -42,7 +55,7 @@ class AppointmentsController < ApplicationController
 	end
 
 	def destroy
-    	if can_edit_appointment(@appointment)
+    	if can_edit_appointment?(@appointment)
 	    	@appointment.destroy
 	    	redirect_to root_path
     	else
@@ -61,6 +74,12 @@ class AppointmentsController < ApplicationController
 	  else
 	  	@appointments = current_user.appointments
 	  end
+	  @hash = Gmaps4rails.build_markers(@appointments) do |appt, marker|
+  		marker.lat appt.latitude
+  		marker.lng appt.longitude
+  		marker.infowindow appt.name
+
+		end
 	end
 
 	private
@@ -69,7 +88,7 @@ class AppointmentsController < ApplicationController
 	# Be sure to update your create() and update() controller methods.
 
 	def appointment_params
-	  params.require(:appointment).permit(:slot, :client_number, :time, :name)
+	  params.require(:appointment).permit(:slot, :client_number, :time, :name, :address, :latitude, :longitude, :block)
 	end
 
 	def find_appointment
