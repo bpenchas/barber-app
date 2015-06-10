@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
   get 'payments/index'
+  get 'appointments/home'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  resources :appointments
+  
+
+  #authenticate :user do
+  #  resources :appointments, only: [:new, :create, :edit, :update, :destroy]
+  #end
+  resources :appointments#, only: [:index, :home, :show]
   # You can have the root of your site routed with "root"
-  root 'appointments#index'
+  #get '/appointments/new' => "appointments#new", as: :user_root
+  root 'appointments#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

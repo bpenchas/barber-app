@@ -8,25 +8,42 @@
 </head>
 <body>
 
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>|
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> |
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>|
-<% end %>
-<%=link_to 'Make a New Appointment', new_appointment_path%> |
-<%=link_to 'Home', root_path%> |
-<%= link_to "Pay with SnapScan", payments_index_path, :class => 'navbar-link'  %>
+
+
+<p class="navbar-text pull-right">
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container"> <a class="btn btn-primary btn-dropnav" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> 
+      <div class="nav-collapse collapse">
+        <ul class="nav pull-right">
+        <% if user_signed_in? %>
+          
+          
+          
+         
+
+        <% else %>
+          <li>
+            <%= link_to "Sign Up", new_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to "Sign In", new_user_session_path %>
+          </li>
+        </ul>
+        <%end%>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
 <% if alert %>
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
-
-<p class="navbar-text pull-right">
 
 <%= yield %>
 </body>

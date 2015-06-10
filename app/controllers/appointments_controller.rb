@@ -3,25 +3,29 @@ class AppointmentsController < ApplicationController
 	before_action :find_appointment, only: [:show, :edit, :update, :destroy]
 
 	def new
-		@appointments = Appointment.all
-		@taken_slots = []
 
-		@appointments.each do |appt|
-				@taken_slots << [appt.slot, appt.time.strftime("%I:%M %p")]
+		if current_user.id.present?
+			@appointments = Appointment.all
+			@taken_slots = []
+
+			@appointments.each do |appt|
+					@taken_slots << [appt.time.strftime("%I:%M %p")]
+			end
+
+			# @appointments.each do |appt|
+			# 	if is_taken?(appt)
+			# 		@taken_times << appt.time.strftime("%I:%M %p")
+			# 	end
+			# end
+			
+			@appointment = Appointment.new
+			# @appointment.user_id = current_user.id
+			# @appointment.save
+
 		end
 
-		# @appointments.each do |appt|
-		# 	if is_taken?(appt)
-		# 		@taken_times << appt.time.strftime("%I:%M %p")
-		# 	end
-		# end
-		
-		@appointment = Appointment.new
-		@appointment.user_id = current_user.id
-		@appointment.save
-		
-
 	end
+	
 	def update
 		if can_edit_appointment?(@appointment)
 	    if @appointment.update(appointment_params)
@@ -43,10 +47,10 @@ class AppointmentsController < ApplicationController
 
 		@appointment = Appointment.new(appointment_params)
 		@appointment.user_id = current_user.id
-		
 		if @appointment.save
 			
-			redirect_to @appointment, notice: 'Successfully created new appointment'
+			#send_text(@appointment.time)
+			redirect_to payments_index_path, notice: 'Successfully created new appointment'
 
 		else
 			render 'new'
