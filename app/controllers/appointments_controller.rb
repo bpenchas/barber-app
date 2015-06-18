@@ -19,11 +19,12 @@ class AppointmentsController < ApplicationController
 			# end
 			
 			@appointment = Appointment.new
-		if current_user.present?
-			@appointment.user_id = current_user.id
 			@appointment.save
+		# if current_user.present?
+		# 	@appointment.user_id = current_user.id
+		# 	@appointment.save
 
-		end
+		# end
 
 	end
 	
