@@ -48,7 +48,7 @@ class AppointmentsController < ApplicationController
 	def create
 
 		@appointment = Appointment.new(appointment_params)
-		@appointment.user_id = current_user.id
+		#@appointment.user_id = current_user.id
 		if @appointment.save
 			
 			#send_text(@appointment.time)
