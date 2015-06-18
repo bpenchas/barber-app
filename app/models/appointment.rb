@@ -12,7 +12,7 @@ class Appointment < ActiveRecord::Base
 	validates :client_number, presence: true
 	validates :name, presence: true
 	validates :address, presence: true
-	belongs_to :users
+	belongs_to :users, dependent: :destroy
 
 	geocoded_by :address
 	after_validation :geocode

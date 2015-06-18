@@ -2,21 +2,21 @@ module AppointmentsHelper
 	def can_edit_appointment?(appointment)
 		current_user.admin? || appointment.user_id == current_user.id
 	end
-	# def is_taken?(appt)
-	# 	@appointments = Appointment.all
+	def is_taken?(appt)
+		@appointments = Appointment.all
 
-	# 	@taken_slots = []
+		@taken_slots = []
 		
-	# 	@appointments.each do |appt|
-	# 			@taken_slots << [appt.slot, appt.time.strftime("%I:%M %p")]
-	# 	end
+		@appointments.each do |appt|
+				@taken_slots << [appt.slot, appt.time.strftime("%I:%M %p")]
+		end
 
-	# 	if @taken_slots.include?([appt.slot, appt.time.strftime("%I:%M %p")])
-	# 		return true
-	# 	else
-	# 		return false
-	# 	end
-	# end
+		if @taken_slots.include?([appt.slot, appt.time.strftime("%I:%M %p")])
+			return true
+		else
+			return false
+		end
+	end
 	def send_text
 	# Test Credentials
 			account_sid = 'AC818b91aaf3aa4883ebd967c1ce05b4f8'

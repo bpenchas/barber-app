@@ -18,9 +18,11 @@
 
 		<ul>
 		      <%@appointments.each do |appt| %>
+		      <% if appt.time.present?%>
 		        <% if slot.day == appt.slot.day&&appt.slot.month==@date.month%>
 		        	<li><%= link_to h(appt.name), appt %> @ <%= appt.time.strftime("%I:%M %p") %></li>
 		        <% end %>
+		       <% end %>
 		      <% end %>
 		</ul>
 	<% end %>

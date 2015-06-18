@@ -19,10 +19,12 @@
         <ul class="nav pull-right">
         <% if user_signed_in? %>
           
+          <li><%= link_to image_tag("http://png-1.findicons.com/files/icons/1580/devine_icons_part_2/128/home.png", size: "40x40"), appointments_path %></li>
+                    <li><%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/512/scissors.png", size: "40x40"), new_appointment_path %></li>
+                    <li><%= link_to image_tag("http://simpleicon.com/wp-content/uploads/account.png", size: "40x40"), edit_user_registration_path %></li>
+                    <li><%= link_to image_tag("http://jaredmusil.com/code/wip/appdb/images/logout.png", size: "40x40"), destroy_user_session_path, method: :delete  %></li>
+                     <li><%= link_to image_tag("https://cdn3.iconfinder.com/data/icons/rcons-finance/32/mobile_pay_card-512.png", size: "40x40"), payments_index_path, :class => 'navbar-link' %></li>
           
-          
-         
-
         <% else %>
           <li>
             <%= link_to "Sign Up", new_user_registration_path %>

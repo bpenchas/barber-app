@@ -9,18 +9,18 @@ class AppointmentsController < ApplicationController
 			@taken_slots = []
 
 			@appointments.each do |appt|
-					@taken_slots << [appt.time.strftime("%I:%M %p")]
+					#@taken_slots << [appt.time.strftime("%I:%M %p")]
 			end
 
 			# @appointments.each do |appt|
-			# 	if is_taken?(appt)
-			# 		@taken_times << appt.time.strftime("%I:%M %p")
-			# 	end
+			#  	if is_taken?(appt)
+			#  		@taken_times << appt.time.strftime("%I:%M %p")
+			#  	end
 			# end
 			
 			@appointment = Appointment.new
-			# @appointment.user_id = current_user.id
-			# @appointment.save
+			@appointment.user_id = current_user.id
+			@appointment.save
 
 		end
 
