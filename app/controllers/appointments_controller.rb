@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
 
 	def new
 
-		if current_user.id.present?
+		
 			@appointments = Appointment.all
 			@taken_slots = []
 
@@ -19,6 +19,7 @@ class AppointmentsController < ApplicationController
 			# end
 			
 			@appointment = Appointment.new
+		if current_user.present?
 			@appointment.user_id = current_user.id
 			@appointment.save
 
