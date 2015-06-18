@@ -1,6 +1,7 @@
 class AppointmentsController < ApplicationController
 	include AppointmentsHelper
 	before_action :find_appointment, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!, :except => [:show, :index]
 
 	def new
 
@@ -19,12 +20,12 @@ class AppointmentsController < ApplicationController
 			# end
 			
 			@appointment = Appointment.new
+			
+		if current_user.present?
+			@appointment.user_id = current_user.id
 			@appointment.save
-		# if current_user.present?
-		# 	@appointment.user_id = current_user.id
-		# 	@appointment.save
 
-		# end
+		end
 
 	end
 	
@@ -48,7 +49,7 @@ class AppointmentsController < ApplicationController
 	def create
 
 		@appointment = Appointment.new(appointment_params)
-		#@appointment.user_id = current_user.id
+		@appointment.user_id = current_user.id
 		if @appointment.save
 			
 			#send_text(@appointment.time)
