@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
 	include AppointmentsHelper
 	before_action :find_appointment, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate_user!, :except => [:show, :index]
+	#before_action :authenticate_user!, :except => [:show, :index, :home]
 
 	def new
 

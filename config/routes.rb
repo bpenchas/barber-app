@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   
 
-  #authenticate :user do
-  #  resources :appointments, only: [:new, :create, :edit, :update, :destroy]
-  #end
-  resources :appointments#, only: [:index, :home, :show]
+  authenticate :user do
+    resources :appointments, only: [:new, :create, :edit, :update, :destroy]
+  end
+  resources :appointments, only: [:index, :home, :show]
   # You can have the root of your site routed with "root"
   #get '/appointments/new' => "appointments#new", as: :user_root
   root 'appointments#home'
