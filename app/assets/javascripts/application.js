@@ -11,12 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
 //= require gmaps/google
 //= require agency
-//= require bootstrap
 //= require bootstrap.min
 //= require cbpAnimatedHeader
 //= require cbpAnimatedHeader.min
