@@ -50,6 +50,7 @@ class AppointmentsController < ApplicationController
 
 		@appointment = Appointment.new(appointment_params)
 		@appointment.user_id = current_user.id
+		@appointment.save
 		if @appointment.save
 			
 			#send_text(@appointment.time)
